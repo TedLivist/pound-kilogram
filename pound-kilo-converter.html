@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Weight Converter</title>
+
+        <style>
+            h2, p {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            #wrapper {
+                text-align: center;
+                margin-top: 100px;
+            }
+
+            input {
+                height: 20px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+
+        <div id="wrapper">
+            <h2>Convert your weight from pound to kg and vice versa</h2>
+            <p></p>
+            <input placeholder="Enter pound">
+            <input placeholder="Enter kilogram">
+        </div>  
+
+        <script>
+            const weightBox = document.querySelectorAll("input");       
+            poundBox = weightBox[0];
+            kilogramBox = weightBox[1];
+
+            const errorPara = document.querySelector("p");
+            errorPara.textContent = "You haven't entered a number yet";
+            poundBox.onkeyup = function() {
+                poundVal = poundBox.value;
+                if (poundVal == "") {
+
+                    errorPara.textContent = "You haven't entered a number yet";
+                    kilogramBox.value = "";
+
+                } else if (isNaN(poundVal)) {
+
+                    console.log("Please enter a number");
+                    errorPara.textContent = "Please enter a number";
+
+                } else {
+
+                    errorPara.style.display = "block";
+                    errorPara.textContent = "Here is your conversion!";
+
+                    kilogramBox.value = (poundVal *  0.453592).toFixed(5);
+                    kilogramBox.value += " kg";
+                }
+            }
+
+            kilogramBox.onkeyup = function() {
+                kiloVal = kilogramBox.value;
+                if (kiloVal == "") {
+
+                    errorPara.textContent = "You haven't entered a number yet";
+                    poundBox.value = "";
+
+                } else if (isNaN(kiloVal)) {
+
+                    console.log("Please enter a number");
+                    errorPara.textContent = "Please enter a number";
+
+                } else {
+
+                    errorPara.style.display = "block";
+                    errorPara.textContent = "Here is your conversion!";
+
+                    poundBox.value = (kiloVal * 2.20462).toFixed(5);
+                    poundBox.value += " lb";
+                }
+            }
+        </script>
+    </body>
+</html>
